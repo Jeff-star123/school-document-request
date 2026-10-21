@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
-    /* Saint Jude College & PHINMA Brand Palette */
+    /* SJC & PHINMA Palette */
     --sjc-green: #0c4a34;
     --sjc-green-light: #126347;
     --sjc-green-soft: rgba(12, 74, 52, 0.08);
@@ -77,10 +77,11 @@ body {
     background-color: var(--bg-main);
     color: var(--text-primary);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
-   SPLIT PORTAL AUTH (Image 1 Exact Layout)
+   PORTAL AUTH (Login / Register / Forgot Password)
    ========================================================================== */
 .portal-container {
     min-height: 100vh;
@@ -89,10 +90,8 @@ body {
     overflow: hidden;
 }
 
-/* Left Brand Showcase */
 .portal-showcase {
     flex: 1.1;
-    background: linear-align(135deg, #f8fafc 0%, #edf2f7 100%);
     background: linear-gradient(145deg, #f4f6fa 0%, #e5eaf3 100%);
     position: relative;
     display: flex;
@@ -106,7 +105,6 @@ body {
     background: linear-gradient(145deg, #0f1614 0%, #15221e 100%);
 }
 
-/* Floating Geometric Angled Tiles (Mirrors Image 1) */
 .geometric-bg {
     position: absolute;
     inset: 0;
@@ -122,38 +120,10 @@ body {
     box-shadow: 0 15px 35px rgba(27, 88, 158, 0.12);
 }
 
-.tile-1 {
-    width: 140px;
-    height: 280px;
-    background: linear-gradient(180deg, #628bb8 0%, #466c98 100%);
-    top: 5%;
-    left: 4%;
-}
-
-.tile-2 {
-    width: 110px;
-    height: 220px;
-    background: linear-gradient(180deg, #a4bad4 0%, #7695bc 100%);
-    top: -2%;
-    left: 20%;
-    opacity: 0.55;
-}
-
-.tile-3 {
-    width: 130px;
-    height: 260px;
-    background: linear-gradient(180deg, #325a85 0%, #204165 100%);
-    top: 10%;
-    right: 8%;
-}
-
-.tile-4 {
-    width: 120px;
-    height: 240px;
-    background: linear-gradient(180deg, #5177a3 0%, #2a517d 100%);
-    bottom: -5%;
-    right: 18%;
-}
+.tile-1 { width: 140px; height: 280px; background: linear-gradient(180deg, #628bb8 0%, #466c98 100%); top: 5%; left: 4%; }
+.tile-2 { width: 110px; height: 220px; background: linear-gradient(180deg, #a4bad4 0%, #7695bc 100%); top: -2%; left: 20%; opacity: 0.55; }
+.tile-3 { width: 130px; height: 260px; background: linear-gradient(180deg, #325a85 0%, #204165 100%); top: 10%; right: 8%; }
+.tile-4 { width: 120px; height: 240px; background: linear-gradient(180deg, #5177a3 0%, #2a517d 100%); bottom: -5%; right: 18%; }
 
 .showcase-content {
     position: relative;
@@ -163,8 +133,8 @@ body {
 }
 
 .sjc-crest {
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
     box-shadow: 0 12px 30px rgba(12, 74, 52, 0.18);
     margin: 0 auto 1.5rem;
@@ -176,16 +146,13 @@ body {
 
 .showcase-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     font-weight: 700;
     color: var(--sjc-green);
-    letter-spacing: -0.01em;
     margin-bottom: 0.5rem;
 }
 
-[data-theme="dark"] .showcase-title {
-    color: var(--sjc-gold);
-}
+[data-theme="dark"] .showcase-title { color: var(--sjc-gold); }
 
 .showcase-sub {
     color: var(--text-secondary);
@@ -207,8 +174,8 @@ body {
 }
 
 .trust-badge-shield {
-    width: 45px;
-    height: 60px;
+    width: 44px;
+    height: 56px;
     border: 2px solid #204165;
     border-radius: 8px 8px 50% 50%;
     display: flex;
@@ -227,7 +194,6 @@ body {
     color: var(--sjc-gold);
 }
 
-/* Right Form Section */
 .portal-form-wrapper {
     flex: 0.95;
     display: flex;
@@ -241,8 +207,8 @@ body {
 
 .theme-toggle-fixed {
     position: absolute;
-    top: 1.5rem;
-    right: 2rem;
+    top: 1.25rem;
+    right: 1.5rem;
     z-index: 10;
 }
 
@@ -256,14 +222,14 @@ body {
 }
 
 .phinma-brand-logo {
-    width: 55px;
-    height: 55px;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
     flex-shrink: 0;
 }
 
 .phinma-brand-text h3 {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 800;
     letter-spacing: 0.05em;
     color: var(--text-primary);
@@ -279,9 +245,7 @@ body {
     margin-top: 3px;
 }
 
-[data-theme="dark"] .phinma-brand-text p {
-    color: var(--sjc-gold);
-}
+[data-theme="dark"] .phinma-brand-text p { color: var(--sjc-gold); }
 
 .auth-form-card {
     width: 100%;
@@ -298,7 +262,7 @@ body {
 }
 
 .form-header-underline h2 {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
     font-weight: 700;
     color: var(--text-primary);
     display: inline-block;
@@ -317,9 +281,11 @@ body {
     border-radius: 2px;
 }
 
-/* Material-style input fields with icon slots */
+/* ==========================================================================
+   FORM INPUTS & PASSWORD TOGGLE BUTTON
+   ========================================================================== */
 .input-field-group {
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.25rem;
 }
 
 .input-field-group label {
@@ -330,21 +296,20 @@ body {
     margin-bottom: 0.4rem;
 }
 
-.input-field-group label span.req {
-    color: #e11d48;
-}
+.input-field-group label span.req { color: #e11d48; }
 
 .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .input-wrapper input,
 .input-wrapper select,
 .input-wrapper textarea {
     width: 100%;
-    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    padding: 0.75rem 2.85rem 0.75rem 1rem;
     background: var(--bg-main);
     border: 1px solid var(--surface-border);
     border-radius: 6px;
@@ -361,6 +326,7 @@ body {
     box-shadow: 0 0 0 3px rgba(27, 88, 158, 0.12);
 }
 
+/* Static Input Icon */
 .input-icon {
     position: absolute;
     right: 0.9rem;
@@ -370,7 +336,29 @@ body {
     pointer-events: none;
 }
 
-/* Action Button */
+/* Interactive Password Toggle Button */
+.password-toggle-btn {
+    position: absolute;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+.password-toggle-btn:hover {
+    color: var(--sjc-green);
+}
+
+[data-theme="dark"] .password-toggle-btn:hover {
+    color: var(--sjc-gold);
+}
+
 .btn-submit-portal {
     width: 100%;
     padding: 0.8rem;
@@ -389,9 +377,7 @@ body {
     box-shadow: 0 4px 12px rgba(27, 88, 158, 0.25);
 }
 
-.btn-submit-portal:hover {
-    background: var(--phinma-blue-hover);
-}
+.btn-submit-portal:hover { background: var(--phinma-blue-hover); }
 
 .btn-google-mock {
     width: 100%;
@@ -412,7 +398,7 @@ body {
 }
 
 /* ==========================================================================
-   NAVIGATION & DASHBOARDS (Images 2 & 4 upgraded)
+   NAVIGATION BAR & ADAPTIVE RESPONSIVE TABS
    ========================================================================== */
 .sjc-navbar {
     background: var(--surface);
@@ -422,6 +408,8 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    position: relative;
+    z-index: 20;
 }
 
 .brand-wrapper {
@@ -429,9 +417,10 @@ body {
     align-items: center;
     gap: 0.85rem;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
-.brand-wrapper img, .brand-wrapper .brand-seal-mini {
+.brand-wrapper img {
     width: 42px;
     height: 42px;
     border-radius: 50%;
@@ -445,9 +434,7 @@ body {
     line-height: 1.1;
 }
 
-[data-theme="dark"] .brand-text h1 {
-    color: var(--sjc-gold);
-}
+[data-theme="dark"] .brand-text h1 { color: var(--sjc-gold); }
 
 .brand-text span {
     font-size: 0.75rem;
@@ -455,10 +442,11 @@ body {
     color: var(--text-secondary);
 }
 
+/* Nav tabs cluster with smooth mobile scrolling */
 .nav-links-cluster {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.3rem;
 }
 
 .nav-item {
@@ -467,16 +455,15 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
     position: relative;
-    padding: 0.3rem 0;
+    padding: 0.35rem 0;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
 }
 
-.nav-item:hover, .nav-item.active {
-    color: var(--sjc-green);
-}
+.nav-item:hover, .nav-item.active { color: var(--sjc-green); }
 
-[data-theme="dark"] .nav-item:hover, [data-theme="dark"] .nav-item.active {
-    color: var(--sjc-gold);
-}
+[data-theme="dark"] .nav-item:hover, [data-theme="dark"] .nav-item.active { color: var(--sjc-gold); }
 
 .nav-item.active::after {
     content: '';
@@ -499,6 +486,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .btn-logout {
@@ -510,6 +498,7 @@ body {
     font-size: 0.85rem;
     font-weight: 700;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 [data-theme="dark"] .btn-logout {
@@ -518,11 +507,26 @@ body {
     border-color: var(--sjc-gold);
 }
 
-/* Dashboard Content */
+/* ==========================================================================
+   DASHBOARD LAYOUT, CARDS, & BACKGROUND
+   ========================================================================== */
+.page-geometric-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
 .dashboard-container {
     max-width: 1240px;
     margin: 2.25rem auto;
     padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .dashboard-banner {
@@ -539,13 +543,9 @@ body {
     letter-spacing: -0.02em;
 }
 
-.dashboard-banner h2 span {
-    color: var(--sjc-green);
-}
+.dashboard-banner h2 span { color: var(--sjc-green); }
 
-[data-theme="dark"] .dashboard-banner h2 span {
-    color: var(--sjc-gold);
-}
+[data-theme="dark"] .dashboard-banner h2 span { color: var(--sjc-gold); }
 
 .dashboard-banner p {
     color: var(--text-secondary);
@@ -569,11 +569,8 @@ body {
     cursor: pointer;
 }
 
-.btn-primary-action:hover {
-    background: var(--sjc-green-light);
-}
+.btn-primary-action:hover { background: var(--sjc-green-light); }
 
-/* Cards & Modern Table (Upgraded from Image 4) */
 .content-card-sjc {
     background: var(--surface-card);
     border: 1px solid var(--surface-border);
@@ -599,11 +596,13 @@ body {
 
 .table-responsive {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .sjc-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 650px;
 }
 
 .sjc-table th {
@@ -613,21 +612,19 @@ body {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    padding: 1rem 1.75rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--surface-border);
     text-align: left;
 }
 
 .sjc-table td {
-    padding: 1.15rem 1.75rem;
+    padding: 1.15rem 1.5rem;
     border-bottom: 1px solid var(--surface-border);
     font-size: 0.92rem;
     vertical-align: middle;
 }
 
-.sjc-table tbody tr:hover {
-    background: var(--sjc-green-soft);
-}
+.sjc-table tbody tr:hover { background: var(--sjc-green-soft); }
 
 .tracking-code {
     font-weight: 800;
@@ -636,11 +633,8 @@ body {
     font-size: 0.95rem;
 }
 
-[data-theme="dark"] .tracking-code {
-    color: var(--sjc-gold);
-}
+[data-theme="dark"] .tracking-code { color: var(--sjc-gold); }
 
-/* Badges */
 .status-pill {
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
@@ -649,6 +643,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    white-space: nowrap;
 }
 
 .status-pill.pending { background: var(--badge-pending-bg); color: var(--badge-pending-text); }
@@ -665,9 +660,7 @@ body {
     gap: 0.4rem;
 }
 
-[data-theme="dark"] .instruction-note {
-    color: #34d399;
-}
+[data-theme="dark"] .instruction-note { color: #34d399; }
 
 .alert {
     padding: 0.85rem 1.25rem;
@@ -678,27 +671,7 @@ body {
 .alert-danger { background: #ffe4e6; color: #9f1239; border-left: 4px solid #e11d48; }
 .alert-success { background: #dcfce7; color: #166534; border-left: 4px solid #16a34a; }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .portal-container {
-        flex-direction: column;
-    }
-    .portal-showcase {
-        padding: 3rem 1.5rem 2rem;
-    }
-    .trust-badge {
-        position: static;
-        margin-top: 1.5rem;
-        justify-content: center;
-    }
-    .sjc-navbar {
-        padding: 1rem 1.5rem;
-    }
-}
-
-/* ==========================================================================
-   ADMIN STATS & ACTION CONTROLS (SJC Brand Palette)
-   ========================================================================== */
+/* Stats Grid */
 .stats-grid-sjc {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -753,7 +726,7 @@ body {
 .stat-card-sjc.stat-processing .stat-value { color: var(--phinma-blue); }
 .stat-card-sjc.stat-ready .stat-value { color: #10b981; }
 
-/* Admin Row Action Bar */
+/* Admin Controls */
 .admin-action-form {
     display: flex;
     align-items: center;
@@ -773,10 +746,6 @@ body {
     cursor: pointer;
 }
 
-.select-status-sjc:focus {
-    border-color: var(--sjc-green);
-}
-
 .remarks-input-sjc {
     padding: 0.45rem 0.75rem;
     font-size: 0.85rem;
@@ -786,10 +755,6 @@ body {
     color: var(--text-primary);
     width: 170px;
     outline: none;
-}
-
-.remarks-input-sjc:focus {
-    border-color: var(--sjc-green);
 }
 
 .btn-save-sjc {
@@ -804,11 +769,8 @@ body {
     box-shadow: 0 2px 6px rgba(12, 74, 52, 0.2);
 }
 
-.btn-save-sjc:hover {
-    background: var(--sjc-green-light);
-}
+.btn-save-sjc:hover { background: var(--sjc-green-light); }
 
-/* Callout Note / Info Banner */
 .info-banner-sjc {
     background: var(--sjc-green-soft);
     border-left: 4px solid var(--sjc-green);
@@ -820,9 +782,7 @@ body {
     align-items: flex-start;
 }
 
-[data-theme="dark"] .info-banner-sjc {
-    border-left-color: var(--sjc-gold);
-}
+[data-theme="dark"] .info-banner-sjc { border-left-color: var(--sjc-gold); }
 
 .info-banner-sjc h4 {
     font-size: 0.95rem;
@@ -831,9 +791,7 @@ body {
     margin-bottom: 0.25rem;
 }
 
-[data-theme="dark"] .info-banner-sjc h4 {
-    color: var(--sjc-gold);
-}
+[data-theme="dark"] .info-banner-sjc h4 { color: var(--sjc-gold); }
 
 .info-banner-sjc p {
     font-size: 0.88rem;
@@ -855,28 +813,9 @@ body {
     align-items: center;
 }
 
-.btn-secondary-action:hover {
-    background: var(--surface-border);
-}
+.btn-secondary-action:hover { background: var(--surface-border); }
 
-/* Universal Floating Geometric Background for Dashboards & Pages */
-.page-geometric-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.dashboard-container {
-    position: relative;
-    z-index: 1;
-}
-
-/* Chatbot Styles */
+/* Chat Container */
 .chat-container {
     background: var(--surface-card);
     border: 1px solid var(--surface-border);
@@ -926,4 +865,110 @@ body {
     display: flex;
     gap: 0.75rem;
     background: var(--surface);
+}
+
+/* ==========================================================================
+   ADVANCED RESPONSIVE SYSTEM (Mobile, Tablet, Desktop)
+   ========================================================================== */
+@media (max-width: 900px) {
+    /* Split Portal for Login & Register */
+    .portal-container {
+        flex-direction: column;
+    }
+    .portal-showcase {
+        padding: 3rem 1.5rem 2rem;
+    }
+    .trust-badge {
+        position: static;
+        margin-top: 1.5rem;
+        justify-content: center;
+    }
+
+    /* Navbar Adaptive Mobile Flow */
+    .sjc-navbar {
+        padding: 0.75rem 1.25rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    .brand-wrapper {
+        justify-content: space-between;
+        width: 100%;
+    }
+    /* Horizontal Swipeable Nav Tabs on Phones */
+    .nav-links-cluster {
+        display: flex;
+        gap: 0.65rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 0.35rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .nav-links-cluster::-webkit-scrollbar {
+        display: none;
+    }
+    .nav-item {
+        font-size: 0.85rem;
+        padding: 0.45rem 0.75rem;
+        background: var(--bg-main);
+        border: 1px solid var(--surface-border);
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+    .nav-item.active {
+        background: var(--sjc-green-soft);
+        border-color: var(--sjc-green);
+    }
+    .nav-item.active::after {
+        display: none;
+    }
+
+    /* Dashboard mobile sizing */
+    .dashboard-container {
+        padding: 0 1rem;
+        margin: 1.5rem auto;
+    }
+    .dashboard-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .dashboard-banner h2 {
+        font-size: 1.5rem;
+    }
+    .btn-primary-action {
+        width: 100%;
+        justify-content: center;
+    }
+    .stats-grid-sjc {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .remarks-input-sjc {
+        width: 100%;
+    }
+    .admin-action-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .select-status-sjc, .btn-save-sjc {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .portal-form-wrapper {
+        padding: 2rem 1.25rem;
+    }
+    .auth-form-card {
+        padding: 1.5rem 1.25rem;
+    }
+    .sjc-crest {
+        width: 130px;
+        height: 130px;
+    }
+    .showcase-title {
+        font-size: 1.75rem;
+    }
 }
