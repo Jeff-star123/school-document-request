@@ -1,0 +1,6 @@
+com\phinma\docrequest\DocumentRequestApplication.class
+com\phinma\docrequest\controller\AuthController.class
+com\phinma\docrequest\repository\DocumentRequestRepository.class
+com\phinma\docrequest\model\User.class
+com\phinma\docrequest\model\DocumentRequest.class
+com\phinma\docrequest\service\DocumentRequestService.class

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Document Request - SJC Manila</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/theme.js}"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="brand" href="/student/dashboard">SJC <span>Docs</span></a>
+        <div class="nav-actions">
+            <a th:href="@{/student/dashboard}" class="nav-link">Dashboard</a>
+            <a th:href="@{/student/new-request}" class="nav-link active">New Request</a>
+            <a th:href="@{/settings}" class="nav-link">Settings</a>
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
+            <a th:href="@{/logout}" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container" style="max-width: 650px;">
+        <div class="content-card" style="padding: 2rem;">
+            <h2 style="margin-bottom: 0.5rem;">Request Official Document</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                Official documents are claimed on-campus at Saint Jude College Manila Registrar once status changes to <em>Ready for Pick-up</em>.
+            </p>
+
+            <form th:action="@{/student/new-request}" method="POST">
+                <div class="form-group">
+                    <label>Select Document Type</label>
+                    <select name="documentType" class="form-control" required>
+                        <option value="Form 137 (Transcript of Records)">Form 137 (Transcript of Records)</option>
+                        <option value="Certificate of Good Moral Character">Certificate of Good Moral Character</option>
+                        <option value="Official Report Card / Grade Slip">Official Report Card / Grade Slip</option>
+                        <option value="Certificate of Enrollment / Registration">Certificate of Enrollment / Registration</option>
+                        <option value="Honorable Dismissal / Transfer Credential">Honorable Dismissal / Transfer Credential</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Copies</label>
+                    <input type="number" name="copies" min="1" max="5" value="1" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Purpose of Request</label>
+                    <textarea name="purpose" rows="3" class="form-control" placeholder="e.g. Employment requirement, scholarship application, board exam..." required></textarea>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                    <a th:href="@{/student/dashboard}" class="btn btn-secondary" style="text-decoration:none;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

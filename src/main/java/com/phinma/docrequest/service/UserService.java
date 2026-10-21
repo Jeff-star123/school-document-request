@@ -1,10 +1,11 @@
 package com.phinma.docrequest.service;
 
-import com.phinma.docrequest.model.User;
-import com.phinma.docrequest.repository.UserRepository;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.phinma.docrequest.model.User;
+import com.phinma.docrequest.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -39,7 +40,8 @@ public class UserService {
             return Optional.empty();
         }
         Optional<User> user = userRepository.findByEmail(email.trim().toLowerCase());
-        if (user.isPresent() && user.getPassword().equals(password)) {
+        // FIXED: added .get() to unwrap the Optional
+        if (user.isPresent() && user.get().getPassword().equals(password)) {
             return user;
         }
         return Optional.empty();
