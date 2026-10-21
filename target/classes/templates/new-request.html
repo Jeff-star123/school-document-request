@@ -8,6 +8,15 @@
     <script th:src="@{/js/theme.js}"></script>
 </head>
 <body>
+    <!-- Floating Angled Geometric Background Tiles -->
+    <div class="page-geometric-bg">
+        <div class="tile tile-1"></div>
+        <div class="tile tile-2"></div>
+        <div class="tile tile-3"></div>
+        <div class="tile tile-4"></div>
+    </div>
+
+    <!-- SJC Brand Navbar -->
     <nav class="sjc-navbar">
         <a class="brand-wrapper" th:href="@{/student/dashboard}">
             <img th:src="@{/images/sjc-seal.png}" alt="SJC" onerror="this.onerror=null; this.style.display='none';">
@@ -18,6 +27,8 @@
         </a>
         <div class="nav-links-cluster">
             <a th:href="@{/student/dashboard}" class="nav-item">Dashboard</a>
+            <a th:href="@{/student/notifications}" class="nav-item">Notifications</a>
+            <a th:href="@{/student/assistant}" class="nav-item">AI Assistant</a>
             <a th:href="@{/student/new-request}" class="nav-item active">New Request</a>
             <a th:href="@{/settings}" class="nav-item">Settings</a>
             <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>

@@ -20,13 +20,8 @@
                 <div class="tile tile-3"></div>
                 <div class="tile tile-4"></div>
             </div>
-
             <div class="showcase-content">
-                <img th:src="@{/images/sjc-seal.png}" 
-                     alt="Saint Jude College Seal" 
-                     class="sjc-crest"
-                     onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Saint_Jude_College_Manila_Seal.png/250px-Saint_Jude_College_Manila_Seal.png';">
-                
+                <img th:src="@{/images/sjc-seal.png}" alt="SJC" class="sjc-crest" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Saint_Jude_College_Manila_Seal.png/250px-Saint_Jude_College_Manila_Seal.png';">
                 <h1 class="showcase-title">Saint Jude College Manila</h1>
                 <p class="showcase-sub">Official Online Document Request & Clearance Verification System</p>
             </div>
@@ -34,7 +29,7 @@
 
         <div class="portal-form-wrapper">
             <div class="phinma-brand-header">
-                <img th:src="@{/images/phinma-logo.png}" alt="PHINMA Education" class="phinma-brand-logo" onerror="this.onerror=null; this.style.display='none';">
+                <img th:src="@{/images/phinma-logo.png}" alt="PHINMA" class="phinma-brand-logo" onerror="this.onerror=null; this.style.display='none';">
                 <div class="phinma-brand-text">
                     <h3>PHINMA EDUCATION</h3>
                     <p>Student Portal Registration</p>
@@ -65,15 +60,31 @@
 
                     <div class="input-field-group">
                         <label><span class="req">*</span> Institutional Email (@phinmaed.com)</label>
+                        <div class="input-wrapper" style="display:flex; gap:0.5rem;">
+                            <input type="email" id="regEmail" name="email" placeholder="username@phinmaed.com" pattern=".+@phinmaed\.com" required />
+                            <button type="button" class="btn-save-sjc" onclick="sendRegOtp()" style="white-space:nowrap;">Send OTP</button>
+                        </div>
+                        <small id="otpStatus" style="color: var(--sjc-green); font-weight:600; margin-top:4px; display:block;"></small>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label><span class="req">*</span> 6-Digit Verification OTP</label>
                         <div class="input-wrapper">
-                            <input type="email" name="email" placeholder="username@phinmaed.com" pattern=".+@phinmaed\.com" title="Must end with @phinmaed.com" required />
+                            <input type="text" name="otp" placeholder="Enter code received via email" maxlength="6" required />
                         </div>
                     </div>
 
                     <div class="input-field-group">
                         <label><span class="req">*</span> Password</label>
                         <div class="input-wrapper">
-                            <input type="password" name="password" placeholder="Create a secure password" required />
+                            <input type="password" name="password" placeholder="Create a password" required />
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label><span class="req">*</span> Confirm Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" name="confirmPassword" placeholder="Confirm your password" required />
                         </div>
                     </div>
 
@@ -84,12 +95,33 @@
                     </button>
                 </form>
 
-                <div style="margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-secondary);">
-                    Already registered? 
-                    <a th:href="@{/login}" style="color: var(--sjc-green); font-weight: 700; text-decoration: none;">Sign In</a>
+                <div style="margin-top: 1.5rem; text-align: center; font-size: 0.85rem;">
+                    Already registered? <a th:href="@{/login}" style="color: var(--sjc-green); font-weight:700; text-decoration:none;">Sign In</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function sendRegOtp() {
+            const email = document.getElementById('regEmail').value;
+            const status = document.getElementById('otpStatus');
+            if(!email || !email.endsWith('@phinmaed.com')) {
+                alert('Please enter your official @phinmaed.com email first.');
+                return;
+            }
+            status.textContent = 'Sending OTP...';
+            const formData = new FormData();
+            formData.append('email', email);
+
+            fetch('/api/send-registration-otp', { method: 'POST', body: formData })
+                .then(res => res.text())
+                .then(data => {
+                    status.textContent = '✔ OTP code sent! Check your inbox or terminal console.';
+                }).catch(() => {
+                    status.textContent = 'Failed to dispatch OTP.';
+                });
+        }
+    </script>
 </body>
 </html>

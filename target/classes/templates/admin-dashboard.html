@@ -8,6 +8,14 @@
     <script th:src="@{/js/theme.js}"></script>
 </head>
 <body>
+    <!-- Floating Angled Geometric Background Tiles -->
+    <div class="page-geometric-bg">
+        <div class="tile tile-1"></div>
+        <div class="tile tile-2"></div>
+        <div class="tile tile-3"></div>
+        <div class="tile tile-4"></div>
+    </div>
+
     <!-- Navbar with SJC Brand Identity -->
     <nav class="sjc-navbar">
         <a class="brand-wrapper" th:href="@{/admin/dashboard}">
@@ -35,7 +43,7 @@
         </div>
 
         <div th:if="${param.updated}" class="alert alert-success">
-            ✔ Status and remarks have been successfully updated.
+            ✔ Status and remarks have been successfully updated. Notification and email dispatched to student.
         </div>
 
         <!-- Metric Stat Cards in SJC Palette -->

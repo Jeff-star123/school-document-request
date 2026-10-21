@@ -66,6 +66,7 @@
 
                 <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
                 <div th:if="${param.registered}" class="alert alert-success">Account created! You may now sign in.</div>
+                <div th:if="${param.resetSuccess}" class="alert alert-success">Password reset successful! Please log in with your new password.</div>
 
                 <form th:action="@{/login}" method="POST">
                     <div class="input-field-group">
@@ -98,8 +99,8 @@
                     Sign in with PHINMA Google
                 </div>
 
-                <div style="margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-secondary);">
-                    Don't have an account? 
+                <div style="margin-top: 1.25rem; display: flex; justify-content: space-between; font-size: 0.85rem;">
+                    <a th:href="@{/forgot-password}" style="color: var(--text-secondary); text-decoration: none; font-weight: 500;">Forgot Password?</a>
                     <a th:href="@{/register}" style="color: var(--sjc-green); font-weight: 700; text-decoration: none;">Create Account</a>
                 </div>
             </div>

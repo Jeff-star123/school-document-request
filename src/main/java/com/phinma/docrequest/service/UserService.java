@@ -57,4 +57,15 @@ public class UserService {
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
+
+    public boolean resetPasswordByEmail(String email, String newPassword) {
+        Optional<User> opt = userRepository.findByEmail(email.toLowerCase().trim());
+        if (opt.isPresent()) {
+            User u = opt.get();
+            u.setPassword(newPassword);
+            userRepository.save(u);
+            return true;
+        }
+        return false;
+    }
 }

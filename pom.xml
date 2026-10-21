@@ -55,6 +55,12 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+
+        <!-- Spring Mail for Email OTP and Notifications -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

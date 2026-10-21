@@ -8,6 +8,14 @@
     <script th:src="@{/js/theme.js}"></script>
 </head>
 <body>
+    <!-- Floating Angled Geometric Background Tiles -->
+    <div class="page-geometric-bg">
+        <div class="tile tile-1"></div>
+        <div class="tile tile-2"></div>
+        <div class="tile tile-3"></div>
+        <div class="tile tile-4"></div>
+    </div>
+
     <!-- SJC Brand Navbar -->
     <nav class="sjc-navbar">
         <a class="brand-wrapper" th:href="@{/student/dashboard}">
@@ -19,6 +27,14 @@
         </a>
         <div class="nav-links-cluster">
             <a th:href="@{/student/dashboard}" class="nav-item active">Dashboard</a>
+            <a th:href="@{/student/notifications}" class="nav-item">
+                Notifications 
+                <span th:if="${unreadNotifs != null and unreadNotifs > 0}" 
+                      style="background: #e11d48; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 7px; border-radius: 12px; margin-left: 3px;" 
+                      th:text="${unreadNotifs}">
+                </span>
+            </a>
+            <a th:href="@{/student/assistant}" class="nav-item">AI Assistant</a>
             <a th:href="@{/student/new-request}" class="nav-item">New Request</a>
             <a th:href="@{/settings}" class="nav-item">Settings</a>
             <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
@@ -33,6 +49,10 @@
                 <p>Monitor your requested credentials, release clearances, and pick-up updates in real time.</p>
             </div>
             <a th:href="@{/student/new-request}" class="btn-primary-action">+ Request Document</a>
+        </div>
+
+        <div th:if="${param.success}" class="alert alert-success">
+            ✔ Your document request was successfully submitted and queued for review.
         </div>
 
         <div class="content-card-sjc">
@@ -72,7 +92,7 @@
                                 <span th:if="${req.status == 'READY_FOR_PICKUP'}" class="instruction-note">
                                     ✔ Please proceed to the Registrar's Office with your Student ID.
                                 </span>
-                                <span th:text="${req.remarks != null ? req.remarks : '—'}"></span>
+                                <span th:text="${req.remarks != null and !req.remarks.isBlank() ? req.remarks : '—'}"></span>
                             </td>
                         </tr>
                     </tbody>

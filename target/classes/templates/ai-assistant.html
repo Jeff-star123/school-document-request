@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Registrar Assistant - Saint Jude College Manila</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/theme.js}"></script>
+</head>
+<body>
+    <div class="page-geometric-bg">
+        <div class="tile tile-1"></div>
+        <div class="tile tile-2"></div>
+        <div class="tile tile-3"></div>
+    </div>
+
+    <nav class="sjc-navbar">
+        <a class="brand-wrapper" th:href="@{/student/dashboard}">
+            <img th:src="@{/images/sjc-seal.png}" alt="SJC" onerror="this.onerror=null; this.style.display='none';">
+            <div class="brand-text">
+                <h1>Saint Jude College</h1>
+                <span>AI Helpdesk Assistant</span>
+            </div>
+        </a>
+        <div class="nav-links-cluster">
+            <a th:href="@{/student/dashboard}" class="nav-item">Dashboard</a>
+            <a th:href="@{/student/notifications}" class="nav-item">Notifications</a>
+            <a th:href="@{/student/assistant}" class="nav-item active">AI Assistant</a>
+            <a th:href="@{/settings}" class="nav-item">Settings</a>
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
+            <a th:href="@{/logout}" class="btn-logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container" style="max-width: 820px;">
+        <div class="dashboard-banner">
+            <div>
+                <h2>Registrar <span>AI Assistant</span></h2>
+                <p>Ask in <strong>Filipino, Taglish, or English</strong> (e.g. <em>"para saan to?"</em>, <em>"paano kunin ang Good Moral?"</em>).</p>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatBox">
+                <div class="chat-bubble bot">
+                    Kumusta! Ako ang iyong Saint Jude College AI Registrar Assistant. May maitutulong ba ako ukol sa iyong Form 137, Good Moral Certificate, o proseso ng pagkuha ng dokumento sa Dimasalang campus?
+                </div>
+            </div>
+
+            <div class="chat-input-bar">
+                <input type="text" id="userInput" placeholder="Magtanong dito / Ask a question..." class="remarks-input-sjc" style="flex:1; width:auto;" onkeydown="if(event.key==='Enter') sendMessage()" />
+                <button type="button" class="btn-save-sjc" onclick="sendMessage()">Send &nbsp;➔</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const chatBox = document.getElementById('chatBox');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            // Append user message
+            const uDiv = document.createElement('div');
+            uDiv.className = 'chat-bubble user';
+            uDiv.textContent = msg;
+            chatBox.appendChild(uDiv);
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Fetch AI answer
+            const formData = new FormData();
+            formData.append('question', msg);
+
+            fetch('/student/api/ai/ask', { method: 'POST', body: formData })
+                .then(res => res.text())
+                .then(reply => {
+                    const bDiv = document.createElement('div');
+                    bDiv.className = 'chat-bubble bot';
+                    bDiv.textContent = reply;
+                    chatBox.appendChild(bDiv);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                });
+        }
+    </script>
+</body>
+</html>
