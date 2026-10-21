@@ -2,49 +2,92 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create Account - School Document Request</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Saint Jude College Manila</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/theme.js}"></script>
 </head>
 <body>
-    <div style="position: absolute; top: 1.5rem; right: 2rem;">
-        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
-    </div>
+    <div class="portal-container">
+        <div class="theme-toggle-fixed">
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
+        </div>
 
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h2>Create Account</h2>
-                <p>Only students & staff with <strong>@phinmaed.com</strong> emails can register.</p>
+        <div class="portal-showcase">
+            <div class="geometric-bg">
+                <div class="tile tile-1"></div>
+                <div class="tile tile-2"></div>
+                <div class="tile tile-3"></div>
+                <div class="tile tile-4"></div>
             </div>
 
-            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div class="showcase-content">
+                <img th:src="@{/images/sjc-seal.png}" 
+                     alt="Saint Jude College Seal" 
+                     class="sjc-crest"
+                     onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Saint_Jude_College_Manila_Seal.png/250px-Saint_Jude_College_Manila_Seal.png';">
+                
+                <h1 class="showcase-title">Saint Jude College Manila</h1>
+                <p class="showcase-sub">Official Online Document Request & Clearance Verification System</p>
+            </div>
+        </div>
 
-            <form th:action="@{/register}" method="POST">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" name="fullName" class="form-control" placeholder="e.g. Juan Dela Cruz" required />
+        <div class="portal-form-wrapper">
+            <div class="phinma-brand-header">
+                <img th:src="@{/images/phinma-logo.png}" alt="PHINMA Education" class="phinma-brand-logo" onerror="this.onerror=null; this.style.display='none';">
+                <div class="phinma-brand-text">
+                    <h3>PHINMA EDUCATION</h3>
+                    <p>Student Portal Registration</p>
                 </div>
-                <div class="form-group">
-                    <label>Student ID Number</label>
-                    <input type="text" name="studentIdNumber" class="form-control" placeholder="e.g. 03-2324-00123" required />
-                </div>
-                <div class="form-group">
-                    <label>PHINMA Institutional Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="username@phinmaed.com" pattern=".+@phinmaed\.com" title="Must be a @phinmaed.com email" required />
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Create a password" required />
-                </div>
-                <!-- Default role is STUDENT; for testing staff/admin you can adjust or seed database -->
-                <input type="hidden" name="role" value="STUDENT" />
+            </div>
 
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
+            <div class="auth-form-card">
+                <div class="form-header-underline">
+                    <h2>Register Account</h2>
+                </div>
 
-            <div style="margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-secondary);">
-                Already have an account? <a th:href="@{/login}" style="color: var(--primary); text-decoration: none; font-weight: 600;">Log In</a>
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+                <form th:action="@{/register}" method="POST">
+                    <div class="input-field-group">
+                        <label><span class="req">*</span> Full Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="fullName" placeholder="e.g. Jeffrey Serrano Jr." required />
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label><span class="req">*</span> Student ID Number</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="studentIdNumber" placeholder="e.g. 03-2425-00123" required />
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label><span class="req">*</span> Institutional Email (@phinmaed.com)</label>
+                        <div class="input-wrapper">
+                            <input type="email" name="email" placeholder="username@phinmaed.com" pattern=".+@phinmaed\.com" title="Must end with @phinmaed.com" required />
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label><span class="req">*</span> Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" name="password" placeholder="Create a secure password" required />
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="role" value="STUDENT" />
+
+                    <button type="submit" class="btn-submit-portal">
+                        Complete Registration &nbsp;➔
+                    </button>
+                </form>
+
+                <div style="margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-secondary);">
+                    Already registered? 
+                    <a th:href="@{/login}" style="color: var(--sjc-green); font-weight: 700; text-decoration: none;">Sign In</a>
+                </div>
             </div>
         </div>
     </div>

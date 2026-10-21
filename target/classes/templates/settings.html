@@ -2,59 +2,88 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Account Settings - SJC Manila</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - Saint Jude College Manila</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/theme.js}"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <a class="brand" th:href="${user.role == 'ADMIN' ? '/admin/dashboard' : '/student/dashboard'}">SJC <span>Docs</span></a>
-        <div class="nav-actions">
-            <a th:href="${user.role == 'ADMIN' ? '/admin/dashboard' : '/student/dashboard'}" class="nav-link">Dashboard</a>
-            <a th:href="@{/settings}" class="nav-link active">Settings</a>
+    <nav class="sjc-navbar">
+        <a class="brand-wrapper" th:href="${user.role == 'ADMIN' ? '/admin/dashboard' : '/student/dashboard'}">
+            <img th:src="@{/images/sjc-seal.png}" alt="SJC" onerror="this.onerror=null; this.style.display='none';">
+            <div class="brand-text">
+                <h1>Saint Jude College</h1>
+                <span th:text="${user.role == 'ADMIN' ? 'Registrar Admin' : 'Student Portal'}">Portal</span>
+            </div>
+        </a>
+        <div class="nav-links-cluster">
+            <a th:href="${user.role == 'ADMIN' ? '/admin/dashboard' : '/student/dashboard'}" class="nav-item">Dashboard</a>
+            <a th:href="@{/settings}" class="nav-item active">Settings</a>
             <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
-            <a th:href="@{/logout}" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Logout</a>
+            <a th:href="@{/logout}" class="btn-logout">Logout</a>
         </div>
     </nav>
 
-    <div class="dashboard-container" style="max-width: 650px;">
-        <div class="content-card" style="padding: 2rem; margin-bottom: 2rem;">
-            <h3 style="margin-bottom: 1.25rem;">Appearance Settings</h3>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
-                Toggle your display theme preference across all portal screens (saved locally via Web Storage API):
+    <div class="dashboard-container" style="max-width: 680px;">
+        <!-- Theme Preference Card -->
+        <div class="content-card-sjc" style="padding: 2rem; margin-bottom: 2rem;">
+            <div class="form-header-underline" style="margin-bottom: 1.25rem;">
+                <h2>Display Theme</h2>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
+                Switch between Saint Jude Light Mode and Forest Dark Mode. Your choice is instantly saved in your browser via the Web Storage API and applied across every screen.
             </p>
-            <button class="btn btn-secondary" onclick="toggleTheme()">Toggle Dark / Light Mode</button>
+            <button class="btn-primary-action" onclick="toggleTheme()" type="button" style="background: var(--sjc-gold);">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                Toggle Dark / Light Mode
+            </button>
         </div>
 
-        <div class="content-card" style="padding: 2rem;">
-            <h3 style="margin-bottom: 1.25rem;">Profile & Security</h3>
+        <!-- Profile & Password Security Card -->
+        <div class="content-card-sjc" style="padding: 2rem;">
+            <div class="form-header-underline" style="margin-bottom: 1.5rem;">
+                <h2>Institutional Profile & Security</h2>
+            </div>
 
             <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
             <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
 
-            <div class="form-group">
-                <label>Institutional Email</label>
-                <input type="text" class="form-control" th:value="${user.email}" disabled />
+            <div class="input-field-group">
+                <label>Institutional Account Email</label>
+                <div class="input-wrapper">
+                    <input type="text" th:value="${user.email}" disabled style="opacity: 0.7; cursor: not-allowed;" />
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Student / Employee ID</label>
-                <input type="text" class="form-control" th:value="${user.studentIdNumber}" disabled />
+            <div class="input-field-group">
+                <label>Student / Employee ID Number</label>
+                <div class="input-wrapper">
+                    <input type="text" th:value="${user.studentIdNumber}" disabled style="opacity: 0.7; cursor: not-allowed;" />
+                </div>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid var(--surface-border); margin: 1.5rem 0;" />
+            <hr style="border: 0; border-top: 1px solid var(--surface-border); margin: 2rem 0;" />
 
             <form th:action="@{/settings/change-password}" method="POST">
-                <h4 style="margin-bottom: 1rem; font-size: 1rem;">Update Password</h4>
-                <div class="form-group">
-                    <label>Current Password</label>
-                    <input type="password" name="oldPassword" class="form-control" required />
+                <h3 style="margin-bottom: 1.25rem; font-size: 1.1rem; color: var(--text-primary);">Change Portal Password</h3>
+
+                <div class="input-field-group">
+                    <label><span class="req">*</span> Current Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" name="oldPassword" placeholder="Enter existing password" required />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>New Password</label>
-                    <input type="password" name="newPassword" class="form-control" required />
+
+                <div class="input-field-group">
+                    <label><span class="req">*</span> New Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" name="newPassword" placeholder="Enter new password" required />
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: auto;">Update Password</button>
+
+                <button type="submit" class="btn-primary-action" style="margin-top: 1rem;">
+                    Update Password &nbsp;➔
+                </button>
             </form>
         </div>
     </div>

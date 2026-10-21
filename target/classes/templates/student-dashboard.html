@@ -2,37 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Student Dashboard - SJC Manila</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Saint Jude College Manila</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/theme.js}"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <a class="brand" href="/student/dashboard">SJC <span>Docs</span></a>
-        <div class="nav-actions">
-            <a th:href="@{/student/dashboard}" class="nav-link active">Dashboard</a>
-            <a th:href="@{/student/new-request}" class="nav-link">New Request</a>
-            <a th:href="@{/settings}" class="nav-link">Settings</a>
+    <!-- SJC Brand Navbar -->
+    <nav class="sjc-navbar">
+        <a class="brand-wrapper" th:href="@{/student/dashboard}">
+            <img th:src="@{/images/sjc-seal.png}" alt="SJC" onerror="this.onerror=null; this.style.display='none';">
+            <div class="brand-text">
+                <h1>Saint Jude College</h1>
+                <span>Document Request System</span>
+            </div>
+        </a>
+        <div class="nav-links-cluster">
+            <a th:href="@{/student/dashboard}" class="nav-item active">Dashboard</a>
+            <a th:href="@{/student/new-request}" class="nav-item">New Request</a>
+            <a th:href="@{/settings}" class="nav-item">Settings</a>
             <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
-            <a th:href="@{/logout}" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Logout</a>
+            <a th:href="@{/logout}" class="btn-logout">Logout</a>
         </div>
     </nav>
 
     <div class="dashboard-container">
-        <div class="dashboard-header">
+        <div class="dashboard-banner">
             <div>
                 <h2>Welcome back, <span th:text="${user.fullName}">Student</span></h2>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Track the status of your requested documents in real-time.</p>
+                <p>Monitor your requested credentials, release clearances, and pick-up updates in real time.</p>
             </div>
-            <a th:href="@{/student/new-request}" class="btn btn-primary" style="width: auto;">+ Request Document</a>
+            <a th:href="@{/student/new-request}" class="btn-primary-action">+ Request Document</a>
         </div>
 
-        <div class="content-card">
+        <div class="content-card-sjc">
             <div class="content-card-header">
                 <h3>My Submitted Requests</h3>
             </div>
             <div class="table-responsive">
-                <table>
+                <table class="sjc-table">
                     <thead>
                         <tr>
                             <th>Tracking #</th>
@@ -45,23 +53,23 @@
                     </thead>
                     <tbody>
                         <tr th:if="${#lists.isEmpty(requests)}">
-                            <td colspan="6" style="text-align:center; padding: 2.5rem; color: var(--text-secondary);">
-                                You haven't submitted any document requests yet.
+                            <td colspan="6" style="text-align:center; padding: 3rem; color: var(--text-secondary);">
+                                No document requests submitted yet. Click <strong>+ Request Document</strong> to begin.
                             </td>
                         </tr>
                         <tr th:each="req : ${requests}">
-                            <td style="font-weight: 700; color: var(--primary);" th:text="${req.trackingNumber}"></td>
-                            <td th:text="${req.documentType}"></td>
+                            <td class="tracking-code" th:text="${req.trackingNumber}"></td>
+                            <td><strong th:text="${req.documentType}"></strong></td>
                             <td th:text="${req.copies}"></td>
                             <td th:text="${#temporals.format(req.requestedAt, 'MMM dd, yyyy HH:mm')}"></td>
                             <td>
-                                <span th:if="${req.status == 'PENDING'}" class="badge badge-pending">Pending</span>
-                                <span th:if="${req.status == 'PROCESSING'}" class="badge badge-processing">Processing</span>
-                                <span th:if="${req.status == 'READY_FOR_PICKUP'}" class="badge badge-ready">Ready for Pick-up</span>
-                                <span th:if="${req.status == 'COMPLETED'}" class="badge badge-completed">Completed</span>
+                                <span th:if="${req.status == 'PENDING'}" class="status-pill pending">● Pending</span>
+                                <span th:if="${req.status == 'PROCESSING'}" class="status-pill processing">● Processing</span>
+                                <span th:if="${req.status == 'READY_FOR_PICKUP'}" class="status-pill ready">✔ Ready for Pick-up</span>
+                                <span th:if="${req.status == 'COMPLETED'}" class="status-pill completed">✓ Released</span>
                             </td>
                             <td>
-                                <span th:if="${req.status == 'READY_FOR_PICKUP'}" style="color: var(--accent); font-weight: 600;">
+                                <span th:if="${req.status == 'READY_FOR_PICKUP'}" class="instruction-note">
                                     ✔ Please proceed to the Registrar's Office with your Student ID.
                                 </span>
                                 <span th:text="${req.remarks != null ? req.remarks : '—'}"></span>
