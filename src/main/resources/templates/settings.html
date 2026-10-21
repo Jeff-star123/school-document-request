@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Settings - SJC Manila</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/theme.js}"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="brand" th:href="${user.role == 'ADMIN' ? '/admin/dashboard' : '/student/dashboard'}">SJC <span>Docs</span></a>
+        <div class="nav-actions">
+            <a th:href="${user.role == 'ADMIN' ? '/admin/dashboard' : '/student/dashboard'}" class="nav-link">Dashboard</a>
+            <a th:href="@{/settings}" class="nav-link active">Settings</a>
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
+            <a th:href="@{/logout}" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container" style="max-width: 650px;">
+        <div class="content-card" style="padding: 2rem; margin-bottom: 2rem;">
+            <h3 style="margin-bottom: 1.25rem;">Appearance Settings</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                Toggle your display theme preference across all portal screens (saved locally via Web Storage API):
+            </p>
+            <button class="btn btn-secondary" onclick="toggleTheme()">Toggle Dark / Light Mode</button>
+        </div>
+
+        <div class="content-card" style="padding: 2rem;">
+            <h3 style="margin-bottom: 1.25rem;">Profile & Security</h3>
+
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+            <div class="form-group">
+                <label>Institutional Email</label>
+                <input type="text" class="form-control" th:value="${user.email}" disabled />
+            </div>
+
+            <div class="form-group">
+                <label>Student / Employee ID</label>
+                <input type="text" class="form-control" th:value="${user.studentIdNumber}" disabled />
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--surface-border); margin: 1.5rem 0;" />
+
+            <form th:action="@{/settings/change-password}" method="POST">
+                <h4 style="margin-bottom: 1rem; font-size: 1rem;">Update Password</h4>
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" name="oldPassword" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" name="newPassword" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: auto;">Update Password</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

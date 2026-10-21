@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account - School Document Request</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/theme.js}"></script>
+</head>
+<body>
+    <div style="position: absolute; top: 1.5rem; right: 2rem;">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"></button>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Create Account</h2>
+                <p>Only students & staff with <strong>@phinmaed.com</strong> emails can register.</p>
+            </div>
+
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+            <form th:action="@{/register}" method="POST">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="fullName" class="form-control" placeholder="e.g. Juan Dela Cruz" required />
+                </div>
+                <div class="form-group">
+                    <label>Student ID Number</label>
+                    <input type="text" name="studentIdNumber" class="form-control" placeholder="e.g. 03-2324-00123" required />
+                </div>
+                <div class="form-group">
+                    <label>PHINMA Institutional Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="username@phinmaed.com" pattern=".+@phinmaed\.com" title="Must be a @phinmaed.com email" required />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Create a password" required />
+                </div>
+                <!-- Default role is STUDENT; for testing staff/admin you can adjust or seed database -->
+                <input type="hidden" name="role" value="STUDENT" />
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+
+            <div style="margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-secondary);">
+                Already have an account? <a th:href="@{/login}" style="color: var(--primary); text-decoration: none; font-weight: 600;">Log In</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
